@@ -18,10 +18,8 @@ class FlickrecController < ApplicationController
 			end
 			@tweets[movie.title] = tweets_array
 		end
-		# @tweets.each do |x, y|
-		# 	x = @display
 		
-		@good_words = ["good", "amazing", "film", "movie", "gravity", "meatball"]
+		@good_words = ["good", "amazing", "first-rate", "insightful", "clever", "charming", "comical", "charismatic", "enjoyable", "uproarious", "original", "tender", "hilarious", "absorbing", "sensitive", "riveting", "intriguing", "powerful", "fascinating", "pleasant", "surprising", "dazzling", "thought provoiking", "imaginative", "legendary", "unpretentious", "edge of my seat", "spectacular", "2 thumbs up", "thumbs up", "entertaining", "epic", "touching"]
 
 		@bad_words = ["bad", "terrible", "so bad", "hated", "don't watch", "gravity"]
 		# get good word count

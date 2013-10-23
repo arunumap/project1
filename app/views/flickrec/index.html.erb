@@ -4,21 +4,21 @@
 <% matched_bad_words = [] %>
 <% @tweets.each do |key, value| %>
 	<% value.each do |tweets| %>
-	<% @empty_array = [] %>
+	<% empty_array = [] %>
 	<% tweets.split(',') %>
 	<% tweets.to_s %>
-	<% @empty_array << tweets %>
-	<% @empty_array.each do |a| %>
-		<% @good_words.each do |k| %>
-			<% if a.include?(k) %>
-				<% matched_good_words << k %>
-				<% @size = matched_good_words.size %>
+	<% empty_array << tweets %>
+	<% empty_array.each do |string| %>
+		<% @good_words.each do |word| %>
+			<% if string.include?(word) %>
+				<% matched_good_words << word %>
+				<% @good_size = matched_good_words.count %>
 				<% end %>
 			<% end %>
-		<% @bad_words.each do |b| %>
-			<% if a.include?(b) %>
-			<% matched_bad_words << b %>
-			<% @bad_size = matched_bad_words.size %>
+		<% @bad_words.each do |bad| %>
+			<% if string.include?(bad) %>
+			<% matched_bad_words << bad %>
+			<% @bad_size = matched_bad_words.count %>
 			<% end %>
 		<% end %>
 		<% end %>
@@ -28,21 +28,13 @@
 	<li><%= value %></li>
 	<li>g:<%= matched_good_words %></li>
 	<li>b:<%= matched_bad_words %></li>
-	<li>flickrec score: <%= @size.to_i - @bad_size.to_i %></li>
+	<li>flickrec score g: <%= @good_size %></li>
+	<li>flickrec score b: <%= @bad_size %></li>
 </ul>
-<% matched_good_words = [] %>
-<% matched_bad_words = [] %>
+<% matched_good_words.clear %>
+<% matched_bad_words.clear %>
+<% @good_size = 0; @bad_size = 0 %>
 <% end %>
-
-result = []
-array.each do |a|
-    a.each do |i|
-        search_keys.each do |k|
-            result << a if i.include?(k)
-        end
-    end
-end
-result.uniq!
 
 
 <!-- > s = "this is the line"
