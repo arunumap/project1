@@ -1,0 +1,54 @@
+<h1>All movies currently in theater</h1>
+<!-- <h2>Film was said <em><%= @i %> times</em></h2> -->
+<% matched_good_words = [] %>
+<% matched_bad_words = [] %>
+<% @tweets.each do |key, value| %>
+	<% value.each do |tweets| %>
+	<% @empty_array = [] %>
+	<% tweets.split(',') %>
+	<% tweets.to_s %>
+	<% @empty_array << tweets %>
+	<% @empty_array.each do |a| %>
+		<% @good_words.each do |k| %>
+			<% if a.include?(k) %>
+				<% matched_good_words << k %>
+				<% @size = matched_good_words.size %>
+				<% end %>
+			<% end %>
+		<% @bad_words.each do |b| %>
+			<% if a.include?(b) %>
+			<% matched_bad_words << b %>
+			<% @bad_size = matched_bad_words.size %>
+			<% end %>
+		<% end %>
+		<% end %>
+	<% end %>
+<ul>
+	<li><%= key %></li>
+	<li><%= value %></li>
+	<li>g:<%= matched_good_words %></li>
+	<li>b:<%= matched_bad_words %></li>
+	<li>flickrec score: <%= @size.to_i - @bad_size.to_i %></li>
+</ul>
+<% matched_good_words = [] %>
+<% matched_bad_words = [] %>
+<% end %>
+
+result = []
+array.each do |a|
+    a.each do |i|
+        search_keys.each do |k|
+            result << a if i.include?(k)
+        end
+    end
+end
+result.uniq!
+
+
+<!-- > s = "this is the line"
+=> "this is the line" 
+> intersection = s.split(' ') & ["hey", "format", "quoting", "this"]
+=> ["this"] 
+> intersection.empty?
+=> false -->
+
