@@ -17,11 +17,5 @@ class FlickrecsController < ApplicationController
 		render :index
 	end
 
-	def create
-		create
-
-
-	end
-
 	
 end

@@ -49,15 +49,5 @@ module FlickrecHelper
 		
 	end
 
-	def create
-			@movies_and_score.each do |movie_title, score|
-			RottenMovie.find(:title => movie_title, :limit => 1).each do |movie|
-				movie.posters.detailed
-			end
-			@to_db = Flickrec.new(movie_title: movie_title, image_url: movie.posters.detailed, flickrec_score: score)
-			@to_db.save!
-		end
-	end
-
 
 end
