@@ -1,0 +1,17 @@
+<h1>All movies currently in theater</h1>
+<% @movies_and_score.each do |movie_title, score| %>
+	<% @image.each do |movie| %>
+		<% if movie_title == movie.title %>
+			<% @poster = movie.posters.detailed %>
+			<img src="<%= @poster %>">
+		<% end %>	
+	<% end %>
+<ul>
+	<li><%= movie_title %></li>
+	<li><%= score %></li>
+</ul>
+<% end %>
+
+
+
+

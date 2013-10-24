@@ -19,7 +19,7 @@ module FlickrecHelper
 	end
 
 	def movie_score
-		good_words = ["good", "amazing", "first-rate", "insightful", "clever", "charming", "comical", "charismatic", "enjoyable", "uproarious", "original", "tender", "hilarious", "absorbing", "sensitive", "riveting", "intriguing", "powerful", "fascinating", "pleasant", "surprising", "dazzling", "thought provoiking", "imaginative", "legendary", "unpretentious", "edge of my seat", "spectacular", "2 thumbs up", "thumbs up", "entertaining", "epic", "touching"]
+		good_words = ["good", "amazing", "first-rate", "insightful", "clever", "charming", "comical", "charismatic", "enjoyable", "uproarious", "original", "tender", "hilarious", "absorbing", "sensitive", "riveting", "intriguing", "powerful", "fascinating", "pleasant", "surprising", "dazzling", "thought provoiking", "imaginative", "legendary", "unpretentious", "edge of my seat", "spectacular", "2 thumbs up", "thumbs up", "entertaining", "epic", "touching", "cray", "adoring", "admiring", "romantic", "euphoric", "excited", "tender", "gushy", "gleeful", "happy", "beautiful", "effusive", "phenom", "swell", "exciting", "greatest", "most incredible", "incredible", "greatest movie of all time", "greatest movie ever", "amazing thing", "speechless", "perfect", "holla", "wow", "academy", "award", "great job", "cute", "forward", "can't wait", "cant wait", "believe", "goin", "going", "to see", "holy", "fantastic", "wanted to", "want to", "vivid"]
 		bad_words = ["bad", "terrible", "so bad", "hated", "don't watch"]
 		matched_good_words = []
 		matched_bad_words = [] 
@@ -43,10 +43,20 @@ module FlickrecHelper
 				end
 			
 			end
-			score = ((@good_size.to_i - @bad_size.to_i) * 100)/20
+			score = @good_size - @bad_size
 			@movies_and_score[movie_title] = score
 		end
 		
+	end
+
+	def create
+			@movies_and_score.each do |movie_title, score|
+			RottenMovie.find(:title => movie_title, :limit => 1).each do |movie|
+				movie.posters.detailed
+			end
+			@to_db = Flickrec.new(movie_title: movie_title, image_url: movie.posters.detailed, flickrec_score: score)
+			@to_db.save!
+		end
 	end
 
 

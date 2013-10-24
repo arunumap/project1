@@ -1,6 +1,5 @@
 Flickrec::Application.routes.draw do
-  resources :flickrec, only: [:index, :show]
-  resources :users, except: [:index]
+  resources :flickrecs, only: [:index, :create, :show]
 end
 
 # <% matched_good_words = [] %>
