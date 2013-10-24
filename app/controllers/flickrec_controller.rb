@@ -12,8 +12,7 @@ class FlickrecController < ApplicationController
 	def index
 		@tweets = {}
 		RottenList.find(:type => "in_theaters").each do |movie|
-			@movietitle = movie.title
-			tweets_array = Twitter.search("#" + movie.title, :lang => "en", :count => 15).results.map do |tweet|
+			tweets_array = Twitter.search("#" + movie.title, :lang => "en", :count => 3).results.map do |tweet|
 				tweet.text
 			end
 			@tweets[movie.title] = tweets_array

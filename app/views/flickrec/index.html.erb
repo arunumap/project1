@@ -2,45 +2,32 @@
 <!-- <h2>Film was said <em><%= @i %> times</em></h2> -->
 <% matched_good_words = [] %>
 <% matched_bad_words = [] %>
-<% @tweets.each do |key, value| %>
-	<% value.each do |tweets| %>
-	<% empty_array = [] %>
-	<% tweets.split(',') %>
-	<% tweets.to_s %>
-	<% empty_array << tweets %>
-	<% empty_array.each do |string| %>
+<% @tweets.each do |movie_title, tweets| %>
+	<% tweets.each do |tweet| %>
 		<% @good_words.each do |word| %>
-			<% if string.include?(word) %>
+			<% if tweet.include?(word) %>
 				<% matched_good_words << word %>
 				<% @good_size = matched_good_words.count %>
-				<% end %>
-			<% end %>
-		<% @bad_words.each do |bad| %>
-			<% if string.include?(bad) %>
-			<% matched_bad_words << bad %>
-			<% @bad_size = matched_bad_words.count %>
 			<% end %>
 		<% end %>
+		<% @bad_words.each do |bad| %>
+			<% if tweet.include?(bad) %>
+				<% matched_bad_words << bad %>
+				<% @bad_size = matched_bad_words.count %>
+			<% end %>
 		<% end %>
 	<% end %>
-<ul>
-	<li><%= key %></li>
-	<li><%= value %></li>
-	<li>g:<%= matched_good_words %></li>
-	<li>b:<%= matched_bad_words %></li>
-	<li>flickrec score g: <%= @good_size %></li>
-	<li>flickrec score b: <%= @bad_size %></li>
-</ul>
-<% matched_good_words.clear %>
-<% matched_bad_words.clear %>
-<% @good_size = 0; @bad_size = 0 %>
+	<ul>
+		<li><%= movie_title %></li>
+		<li><%= tweets %></li>
+		<li>g:<%= matched_good_words %></li>
+		<li>b:<%= matched_bad_words %></li>
+		<li>flickrec score g: <%= @good_size %></li>
+		<li>flickrec score b: <%= @bad_size %></li>
+	</ul>
+	<% matched_good_words.clear %>
+	<% matched_bad_words.clear %>
+	<% @good_size = 0; @bad_size = 0 %>
 <% end %>
 
-
-<!-- > s = "this is the line"
-=> "this is the line" 
-> intersection = s.split(' ') & ["hey", "format", "quoting", "this"]
-=> ["this"] 
-> intersection.empty?
-=> false -->
 
