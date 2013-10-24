@@ -10,36 +10,21 @@ class FlickrecController < ApplicationController
 	Rotten.api_key = "gwc2mhjxd4kfs2ag7bsf4uxq"
 
 	def index
-		@tweets = {}
-		RottenList.find(:type => "in_theaters").each do |movie|
-			tweets_array = Twitter.search("#" + movie.title, :lang => "en", :count => 3).results.map do |tweet|
-				tweet.text
-			end
-			@tweets[movie.title] = tweets_array
-		end
-		
-		@good_words = ["good", "amazing", "first-rate", "insightful", "clever", "charming", "comical", "charismatic", "enjoyable", "uproarious", "original", "tender", "hilarious", "absorbing", "sensitive", "riveting", "intriguing", "powerful", "fascinating", "pleasant", "surprising", "dazzling", "thought provoiking", "imaginative", "legendary", "unpretentious", "edge of my seat", "spectacular", "2 thumbs up", "thumbs up", "entertaining", "epic", "touching"]
-
-		@bad_words = ["bad", "terrible", "so bad", "hated", "don't watch", "gravity"]
-		# get good word count
-		# @i = 0
-		# @tweets.each{|movie_title, movie_tweets| movie_tweets.each{|tweet| @i += 1 if tweet "film" } }
-		
-		# @tweets.each do |key, value|
-		# 	value.each do |tweets|
-		# 		@empty_array = []
-		# 		tweets.split(',')
-		# 		tweets.to_s
-		# 		@empty_array << tweets
-			
+		@flicks = get_flicks
+		@score = movie_score
+		# @tweets = {}
+		# 	RottenList.find(:type => "in_theaters").each do |movie|
+		# 	tweets_array = Twitter.search(movie.title, :lang => "en", :count => 15).results.map do |tweet|
+		# 		tweet.text
 		# 	end
-		# 	@key = key
-		# 	@intersection = @empty_array & @good_words
-		# 	end
+		# 	@tweets[movie.title] = tweets_array
+		# end
+		
+		# @good_words = ["good", "amazing", "first-rate", "insightful", "clever", "charming", "comical", "charismatic", "enjoyable", "uproarious", "original", "tender", "hilarious", "absorbing", "sensitive", "riveting", "intriguing", "powerful", "fascinating", "pleasant", "surprising", "dazzling", "thought provoiking", "imaginative", "legendary", "unpretentious", "edge of my seat", "spectacular", "2 thumbs up", "thumbs up", "entertaining", "epic", "touching"]
 
-
-
+		# @bad_words = ["bad", "terrible", "so bad", "hated", "don't watch", "gravity"]
 
 		render :index
 	end
+	
 end
