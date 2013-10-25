@@ -1,16 +1,25 @@
+
+<div class="banner">
+	<div class="logo"><span>FlickRec</span></div>
+	<div class="button_local"><a href="#" class="button">Sign in</a><a href="#" class="button">Register</a></div>
+</div>
+<div class="container">
+
 <h1>All movies currently in theater</h1>
 <% @movies_and_score.each do |movie_title, score| %>
 	<% @image.each do |movie| %>
 		<% if movie_title == movie.title %>
 			<% @poster = movie.posters.detailed %>
-			<img src="<%= @poster %>">
+<!-- put ul here -->
 		<% end %>	
 	<% end %>
-<ul>
-	<li><%= movie_title %></li>
-	<li><%= score %></li>
-</ul>
+<!--put ul back here -->
+
+	<div class="display_box"><h3><%= movie_title %></h3><img src="<%= @poster %>"><p class="font_color">FlickRec Score: <%= score %></p></div>
+<!-- put ul close here -->
+
 <% end %>
+</div><!-- container div -->
 
 
 
