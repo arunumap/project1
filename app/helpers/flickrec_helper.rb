@@ -13,7 +13,7 @@ module FlickrecHelper
 			
 		@tweets = {}
 		RottenList.find(:type => "in_theaters").each do |movie|
-			tweets_array = Twitter.search("#" + movie.title, :lang => "en", :count => 15).results.map do |tweet|
+			tweets_array = Twitter.search("#" + movie.title.gsub(" ",""), :lang => "en", :count => 15).results.map do |tweet|
 				tweet.text
 			end
 			@tweets[movie.title] = tweets_array
