@@ -1,4 +1,4 @@
-class FlickrecsController < ApplicationController
+	class FlickrecsController < ApplicationController
 	include RottenTomatoes
 	Twitter.configure do |config|
 		config.consumer_key = "GvZS4mzrgaZrUlqCLcMUPQ"
