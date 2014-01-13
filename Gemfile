@@ -27,6 +27,8 @@ gem 'tweetstream'
 
 gem 'pry-rails'
 
+gem 'foundation-rails'
+
 gem 'rails_12factor', group: :production
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
