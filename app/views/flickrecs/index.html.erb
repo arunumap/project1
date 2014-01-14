@@ -1,20 +1,17 @@
+<div class="containerhome">
 <div class="container">
-<div class="logo"><span>FlickRec</span></div>
-
-<h1>All movies currently in theater</h1>
-<% @movies_and_score.each do |movie_title, score| %>
-	<% @image.each do |movie| %>
-		<% if movie_title == movie.title %>
-			<% @poster = movie.posters.detailed %>
-<!-- put ul here -->
-		<% end %>	
-	<% end %>
-<!--put ul back here -->
-	<div class="display_box"><h3><%= movie_title %></h3><img src="<%= @poster %>"><p>FlickRec Score: <%= score %></p></div>
-<!-- put ul close here -->
-
-
-<% end %>
+	<div class="logo"><span>FlickRec</span></div>
+	
+		<h1>All movies currently in theater</h1>
+			<% @movies_and_score.each do |movie_title, score| %>
+				<% @image.each do |movie| %>
+					<% if movie_title == movie.title %>
+						<% @poster = movie.posters.detailed %>
+					<% end %>	
+				<% end %>
+		<div class="display_box"><h3><%= movie_title %></h3><img src="<%= @poster %>"><p>FlickRec Score: <%= score %></p></div>
+		<% end %>
+	</div>
 </div><!-- container div -->
 
 
